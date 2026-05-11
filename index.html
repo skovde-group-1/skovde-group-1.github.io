@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Test GitHub Page</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 3rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      background: #38bdf8;
+      color: black;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #7dd3fc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Hello GitHub Pages 🚀</h1>
+
+    <p>
+      This is a test website hosted on GitHub Pages.
+      You can edit this file anytime to build your own site.
+    </p>
+
+    <button onclick="showMessage()">
+      Click Me
+    </button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById("message").innerText =
+        "Your website is working perfectly 🎉";
+    }
+  </script>
+</body>
+</html>
