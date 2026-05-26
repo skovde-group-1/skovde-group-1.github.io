@@ -11,14 +11,13 @@
       background: #f4f7fb;
       color: #222;
       margin: 0;
-      padding: 0;
       line-height: 1.6;
     }
 
     header {
-      background: #1e3a5f;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
       color: white;
-      padding: 50px 20px;
+      padding: 60px 20px;
       text-align: center;
     }
 
@@ -34,14 +33,14 @@
 
     .container {
       width: 90%;
-      max-width: 900px;
+      max-width: 950px;
       margin: auto;
-      padding: 30px 0;
+      padding: 35px 0;
     }
 
     .day {
       background: white;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       padding: 25px;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -52,9 +51,28 @@
       color: #1e3a5f;
     }
 
+    .image-row {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin: 25px 0;
+    }
+
+    .image-row img {
+      width: 320px;
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .image-row p {
+      flex: 1;
+      margin: 0;
+    }
+
     .highlight {
       background: #e0f2fe;
-      padding: 10px;
+      padding: 12px;
       border-left: 5px solid #0284c7;
       margin-top: 15px;
       border-radius: 5px;
@@ -66,6 +84,21 @@
       background: #1e3a5f;
       color: white;
       margin-top: 40px;
+    }
+
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .image-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .image-row img {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -81,24 +114,31 @@
 
     <div class="day">
       <h2>Monday — Project Kickoff</h2>
+
       <p>
-        On Monday, the project officially kicked off. We started the day with a small introduction where everyone had the chance to get to know each other better. After that, we met our teams and started working on the project until around 4 PM.
+        On Monday, the project officially kicked off. We started the day with a small introduction where we got to know some of our fellow students. After that, we met our teams and started working on the project until around 4 PM.
+      </p>
 
-        At noon, we went out for sushi together with the local students, which was a great way to connect and spend time together outside of the project work.
+      <div class="image-row">
+        <img src="sushi.jpg" alt="Sushi with local students">
 
+        <p>
+          At noon, we went out for sushi together with the local students, which was a great way to connect and spend time together outside of the project work.
+        </p>
+      </div>
+
+      <p>
         In the evening, we had our first social activity: a board game night. Before and after the games, we spent time talking, having drinks, and getting to know everyone better. It was a fun and relaxed way to end the first day of the project.
       </p>
 
       <div class="highlight">
-        <strong>Main activity:</strong> Team formation and brainstorming.
+        <strong>Best moment:</strong> Meeting new people and playing board games together.
       </div>
     </div>
 
     <div class="day">
       <h2>Tuesday — Teamwork & Workshops</h2>
-      <p>
-        ToDo
-      </p>
+      <p>ToDo</p>
 
       <div class="highlight">
         <strong>Challenge:</strong> Solving problems together in an international team.
@@ -107,9 +147,7 @@
 
     <div class="day">
       <h2>Wednesday — Exploring Skövde</h2>
-      <p>
-        ToDo
-      </p>
+      <p>ToDo</p>
 
       <div class="highlight">
         <strong>Favorite place:</strong> Add your favorite location here.
@@ -118,9 +156,7 @@
 
     <div class="day">
       <h2>Thursday — Finalizing the Project</h2>
-      <p>
-        ToDo
-      </p>
+      <p>ToDo</p>
 
       <div class="highlight">
         <strong>Team achievement:</strong> Completing our presentation/project.
@@ -129,9 +165,7 @@
 
     <div class="day">
       <h2>Friday — Presentation Day</h2>
-      <p>
-        ToDo
-      </p>
+      <p>ToDo</p>
 
       <div class="highlight">
         <strong>Proud moment:</strong> Presenting in front of everyone.
@@ -140,9 +174,7 @@
 
     <div class="day">
       <h2>Saturday — Goodbye Sweden</h2>
-      <p>
-        ToDo
-      </p>
+      <p>ToDo</p>
 
       <div class="highlight">
         <strong>Final reflection:</strong> This week helped me grow personally and professionally.
