@@ -55,12 +55,52 @@
       padding: 35px 0;
     }
 
+    .timeline-page {
+      position: relative;
+      padding-left: 150px;
+    }
+
+    .timeline-page::before {
+      content: "";
+      position: absolute;
+      left: 110px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #c7d2fe;
+    }
+
     .day {
+      position: relative;
       background: white;
       margin-bottom: 30px;
       padding: 25px;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .day::before {
+      content: "";
+      position: absolute;
+      left: -45px;
+      top: 28px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #2563eb;
+      box-shadow: 0 0 0 4px #e0e7ff;
+    }
+
+    .day::after {
+      content: attr(data-day);
+      position: absolute;
+      left: -140px;
+      top: 22px;
+      width: 85px;
+      text-align: right;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1e3a5f;
     }
 
     .day h2 {
@@ -122,6 +162,19 @@
         font-size: 2.2rem;
       }
 
+      .timeline-page {
+        padding-left: 0;
+      }
+
+      .timeline-page::before {
+        display: none;
+      }
+
+      .day::before,
+      .day::after {
+        display: none;
+      }
+
       .image-row {
         flex-direction: column;
         align-items: flex-start;
@@ -149,15 +202,15 @@
   </header>
 
   <div class="container">
-
-    <div class="day">
+    <div class="timeline-page">
+    <div class="day" id="objective" data-day="Objective">
       <h2>Project Objective</h2>
       <p>The objective of our project week was less about delivering a final product and more about the experience itself. Instead of a traditional assignment, we collaborated with Skövde University students on a week-long series of engaging CTF challenges. <br>
         <br>
         Teamwork was essential: there was a huge variety of challenges, which meant we had to combine our diverse strengths to compete, making it a great way to get to know each other. In this blog, we’ll walk you through a chronological timeline of our project week, along with a few extras like a visual map of the city.</p>
     </div>
 
-    <div class="day">
+    <div class="day" id="monday" data-day="Monday">
       <h2>Monday — The Adventure Begins</h2>
 
       <p>
@@ -181,7 +234,7 @@
       </div>
     </div>
 
-    <div class="day">
+    <div class="day" id="tuesday" data-day="Tuesday">
       <h2>Tuesday</h2>
       <div class="image-row">
         <img src="./images/dinsdag4.jpg" alt="Tuesday challenge setup and work">
@@ -222,7 +275,7 @@
       </div>
     </div>
 
-     <div class="day">
+     <div class="day" id="wednesday" data-day="Wednesday">
       <h2>Wednesday — Exploring Skövde</h2>
  
       <p>
@@ -260,7 +313,7 @@
       </div>
     </div>
 
-    <div class="day">
+    <div class="day" id="thursday" data-day="Thursday">
       <h2>Thursday — Finalizing the Project</h2>
       <p>ToDo</p>
 
@@ -269,7 +322,7 @@
       </div>
     </div>
 
-    <div class="day">
+    <div class="day" id="friday" data-day="Friday">
       <h2>Friday — Presentation Day</h2>
       <p>ToDo</p>
 
@@ -278,7 +331,7 @@
       </div>
     </div>
 
-    <div class="day">
+    <div class="day" id="saturday" data-day="Saturday">
       <h2>Saturday — Goodbye Sweden</h2>
   
       <div class="image-row">
@@ -311,6 +364,8 @@
       <div class="highlight">
         <strong>Final reflection:</strong> This week helped us grow both personally and professionally. We met many wonderful people and learned several new skills along the way.
       </div>
+    </div>
+
     </div>
 
   </div>
