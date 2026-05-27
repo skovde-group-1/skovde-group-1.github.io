@@ -69,8 +69,12 @@
 }
 
 .image-row .caption-block p {
-  margin-bottom: 6px;
+  margin-bottom: 16px;
   text-align: left;
+}
+
+.image-row .caption-block p:last-of-type {
+  margin-bottom: 6px;
 }
 
 .image-row .caption-block em {
@@ -132,6 +136,72 @@ p.caption {
 
 .highlight strong {
   color: var(--gold-light);
+}
+
+/* TUESDAY: text left, image right */
+@media (min-width: 701px) {
+  .content.tuesday-zigzag .image-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 44%);
+    align-items: start;
+    gap: 30px;
+    max-width: 100%;
+    margin: 34px 0;
+    text-align: left;
+  }
+
+  .content.tuesday-zigzag .image-row .caption-block {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: 10px;
+    padding: 14px 16px;
+    align-self: start;
+  }
+
+  .content.tuesday-zigzag .image-side {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: start;
+  }
+
+  .content.tuesday-zigzag .image-side img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 360px;
+    object-fit: cover;
+  }
+
+  .content.tuesday-zigzag .image-side .img-small {
+    max-height: 420px;
+    object-fit: contain;
+  }
+
+  .content.tuesday-zigzag .image-caption {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #666;
+    font-style: italic;
+    border-left: 3px solid var(--gold);
+    padding-left: 8px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 700px) {
+  .content.tuesday-zigzag .image-row {
+    max-width: 100%;
+  }
+
+  .content.tuesday-zigzag .image-side {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 /* RESPONSIVE */
