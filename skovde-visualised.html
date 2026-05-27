@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skovde: Visualised</title>
+  <title>Skövde: Visualised</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/interactions.css">
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -11,82 +13,90 @@
     crossorigin=""
   >
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #1f2937;
-    }
-
-    header {
-      background: linear-gradient(135deg, #1e3a5f, #2563eb);
-      color: white;
-      padding: 42px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
-
-    header p {
-      margin: 10px 0 0;
-      opacity: 0.9;
-    }
-
     .container {
       width: 92%;
       max-width: 1100px;
-      margin: 24px auto 36px;
-    }
-
-    .nav-links {
-      margin-bottom: 16px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #1d4ed8;
-      font-weight: 700;
+      margin: 30px auto 50px;
     }
 
     #map {
       width: 100%;
       height: 72vh;
       min-height: 460px;
-      border-radius: 14px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-      border: 1px solid #dbe5f0;
+      border-radius: 10px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
     }
 
     .legend {
       margin-top: 14px;
-      background: white;
-      border-radius: 12px;
-      padding: 12px 14px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      border-left: 4px solid #2563eb;
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 12px 18px;
+      border-left: 4px solid var(--gold);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .leaflet-popup-content-wrapper {
+      background: #1a1a1a;
+      color: #e8e8e8;
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    .leaflet-popup-tip {
+      background: #1a1a1a;
+    }
+
+    .leaflet-popup-content strong {
+      color: var(--gold-light);
+    }
+
+    .leaflet-popup-close-button {
+      color: #aaa !important;
+    }
+
+    .leaflet-popup-close-button:hover {
+      color: var(--gold) !important;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Skovde: Visualised</h1>
+    <h1>Skövde: Visualised</h1>
     <p>An interactive map of where we spent our project week</p>
   </header>
 
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-nav-inner">
+      <a href="./index.html">Home</a>
+      <a href="./objective.html">Objective</a>
+      <a href="./days/monday.html">Mon</a>
+      <a href="./days/tuesday.html">Tue</a>
+      <a href="./days/wednesday.html">Wed</a>
+      <a href="./days/thursday.html">Thu</a>
+      <a href="./days/friday.html">Fri</a>
+      <a href="./days/saturday.html">Sat</a>
+      <a href="./reflection.html">Reflection</a>
+      <a href="./skovde-visualised.html" class="active">Map</a>
+      <a href="./credits.html">Credits</a>
+    </div>
+  </nav>
+
   <div class="container">
-    <div class="nav-links">
-      <a href="./index.html">← Back to main blog</a>
-    </div>
-
-    <div id="map" aria-label="Interactive map of Skovde"></div>
-
-    <div class="legend">
-      Click a marker to see what we did there.
-    </div>
+    <div id="map" aria-label="Interactive map of Skövde"></div>
+    <div class="legend">Click any marker to see what we did there.</div>
   </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <footer>
+    <p>Created during our international project week in Skövde 🇸🇪</p>
+    <p>Howest x Skövde University - May 2026</p>
+  </footer>
 
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -103,34 +113,34 @@
 
     const places = [
       {
-        name: "University of Skovde",
+        name: "University of Skövde",
         coords: [58.39405, 13.85462],
-        info: "Monday to Friday - our main base for challenges, teamwork, and presentations."
+        info: "Monday to Friday — our main base for challenges, teamwork, and presentations."
       },
       {
         name: "Sushi Lunch Spot",
         coords: [58.3899918, 13.8476738],
-        info: "we had lunch here many times with local students and tried different dishes."
+        info: "We had lunch here many times with local students and tried different dishes."
       },
       {
         name: "Systembolaget",
         coords: [58.3906327, 13.8444125],
-        info: "The main liquor store in Skovde."
+        info: "The state-owned liquor store in Skövde."
       },
       {
-        name: "Radhuscafeet",
+        name: "Rådhuscaféet",
         coords: [58.3904103, 13.8462342],
-        info: "student cafe hangout before continuing the night in the city."
+        info: "Student café hangout before continuing the night in the city."
       },
       {
         name: "Movie Night Location",
         coords: [58.39405, 13.85482],
-        info: 'Tuesday activity - we watched "WarGames" at the university campus.'
+        info: 'Tuesday activity — we watched "WarGames" at the university campus.'
       },
       {
-        name: "City Centre Walk",
+        name: "City Centre",
         coords: [58.3896, 13.8454],
-        info: "The main city square of Skovde, where we spent our time outside of the classroom."
+        info: "The main city square of Skövde, where we spent our time outside of the classroom."
       },
       {
         name: "Board Game Night",
@@ -138,9 +148,9 @@
         info: "Monday evening board game night."
       },
       {
-        name: "Skovde Centralstation",
+        name: "Skövde Centralstation",
         coords: [58.3895990, 13.8523232],
-        info: "Main trainstation where we arrived and left from."
+        info: "Main train station where we arrived and left from."
       }
     ];
 
@@ -150,5 +160,6 @@
         .bindPopup(`<strong>${place.name}</strong><br>${place.info}`);
     });
   </script>
+  <script src="js/interactions.js"></script>
 </body>
 </html>

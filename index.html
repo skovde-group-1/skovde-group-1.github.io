@@ -4,847 +4,123 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our International Project in Skövde</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #222;
-      margin: 0;
-      line-height: 1.6;
-      font-size: 18px;
-    }
-
-    :root {
-      --progress-nav-height: 68px;
-    }
-
-    header {
-      background: linear-gradient(135deg, #1e3a5f, #2563eb);
-      color: white;
-      min-height: calc(100vh - var(--progress-nav-height) - 16px);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding: 24px 0 0;
-    }
-
-    .hero-inner {
-      width: 90%;
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 0 34px 30px;
-      box-sizing: border-box;
-      min-height: calc(100vh - var(--progress-nav-height) - 28px - 24px);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-content {
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-
-    .hero-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 34px;
-    }
-
-    .hero-brand {
-      margin: 0;
-      font-size: 1.45rem;
-      font-weight: 700;
-      opacity: 0.95;
-    }
-
-    .hero-kicker {
-      margin: 64px 0 14px;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #bfdbfe;
-      font-weight: 700;
-    }
-
-    .hero-title {
-      margin: 0;
-      font-size: clamp(3.8rem, 8.8vw, 6.6rem);
-      line-height: 1.01;
-      max-width: 980px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-subtitle {
-      margin: 18px 0 0;
-      max-width: 680px;
-      font-size: 1.12rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-author {
-      margin: 24px 0 0;
-      max-width: 980px;
-      font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.78);
-    }
-
-    .hero-overview {
-      margin: 28px 0 0;
-      max-width: 1100px;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-overview h3 {
-      margin: 0;
-      font-size: 1.5rem;
-      color: #e2e8f0;
-    }
-
-    .hero-overview p {
-      margin: 14px 0 0;
-      line-height: 1.62;
-      font-size: 1.32rem;
-      max-width: 1000px;
-    }
-
-    .hero-cta-row {
-      margin-top: 44px;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.18);
-      color: white;
-      padding: 14px 24px;
-      font-size: 1.22rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: transform 0.18s ease, background 0.18s ease;
-    }
-
-    .hero-cta:hover {
-      background: rgba(255, 255, 255, 0.28);
-      transform: translateY(-1px);
-    }
-
-    .hero-cta:active {
-      transform: scale(0.97);
-    }
-
-    .hero-cta.clicked {
-      animation: ctaPulse 340ms ease;
-    }
-
-    .map-link {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.14);
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-      padding: 12px 18px;
-      font-size: 1.12rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: background 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .map-link:hover {
-      background: rgba(255, 255, 255, 0.24);
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1260px;
-      margin: auto;
-      padding: 35px 0;
-    }
-
-    .day-nav {
-      width: 100%;
-      position: sticky;
-      top: 0;
-      height: var(--progress-nav-height);
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      z-index: 1200;
-      backdrop-filter: blur(6px);
-      background: rgba(11, 31, 51, 0.78);
-      border-top: 1px solid rgba(191, 219, 254, 0.35);
-      border-bottom: 1px solid rgba(191, 219, 254, 0.22);
-      margin-top: 0;
-    }
-
-    .day-nav-inner {
-      width: 90%;
-      max-width: 1260px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 0;
-      scrollbar-width: thin;
-    }
-
-    .day-nav a {
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      color: #e2e8f0;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 7px 12px;
-      border-radius: 999px;
-      white-space: nowrap;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.08);
-      transition: all 0.2s ease;
-    }
-
-    .day-nav a.active {
-      color: #0b1f33;
-      background: #bfdbfe;
-      border-color: #bfdbfe;
-    }
-
-    .day-nav a:active {
-      transform: scale(0.97);
-    }
-
-    .day-nav a.clicked {
-      animation: navPulse 280ms ease;
-    }
-
-    .timeline-page {
-      position: relative;
-      padding-left: 150px;
-    }
-
-    .timeline-page::before {
-      content: "";
-      position: absolute;
-      left: 110px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: #c7d2fe;
-    }
-
-    .day {
-      position: relative;
-      background: white;
-      margin-bottom: 30px;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      scroll-margin-top: 82px;
-    }
-
-    .day.section-focus {
-      animation: sectionGlow 700ms ease;
-    }
-
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-      will-change: opacity, transform;
-    }
-
-    .reveal-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .day::before {
-      content: "";
-      position: absolute;
-      left: -45px;
-      top: 28px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #2563eb;
-      box-shadow: 0 0 0 4px #e0e7ff;
-    }
-
-    .day::after {
-      content: attr(data-day);
-      position: absolute;
-      left: -140px;
-      top: 22px;
-      width: 85px;
-      text-align: right;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #1e3a5f;
-    }
-
-    .day h2 {
-      margin-top: 0;
-      color: #1e3a5f;
-      font-size: 2rem;
-    }
-
-    .written-by {
-      margin: -6px 0 16px 0;
-      font-weight: 700;
-      color: #334155;
-      font-size: 1.08rem;
-    }
-
-    .day p {
-      font-size: 1.3rem;
-    }
-
-    .image-row {
-      display: grid;
-      grid-template-columns: minmax(280px, 44%) minmax(0, 1fr);
-      align-items: center;
-      gap: 26px;
-      margin: 20px 0;
-    }
-
-    .image-row figure {
-      width: 100%;
-      margin: 0;
-      background: rgba(30, 58, 95, 0.06);
-      border-radius: 14px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .day .image-row:nth-of-type(odd) figure {
-      grid-column: 2;
-      grid-row: 1;
-    }
-
-    .day .image-row:nth-of-type(odd) p {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .day .image-row.force-left figure {
-      grid-column: 1 !important;
-      grid-row: 1;
-    }
-
-    .day .image-row.force-left p {
-      grid-column: 2 !important;
-      grid-row: 1;
-    }
-
-    .image-row img {
-      width: 100%;
-      max-width: 100%;
-      display: block;
-      max-height: 330px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      cursor: zoom-in;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      transform: perspective(700px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--img-scale, 1));
-      transform-origin: center;
-      will-change: transform;
-    }
-
-    .image-row img.wargames-img {
-      width: auto !important;
-      max-width: 100%;
-      max-height: 460px;
-      height: auto;
-      margin: 0 auto;
-    }
-
-    .inline-day-img {
-      width: 320px;
-      max-width: 100%;
-      margin-top: 12px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      cursor: zoom-in;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      transform: perspective(700px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--img-scale, 1));
-      transform-origin: center;
-      will-change: transform;
-    }
-
-    .reflection-row {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .reflection-row p {
-      flex: 1;
-      margin: 0;
-    }
-
-    .reflection-photo {
-      width: 100%;
-      max-width: 100%;
-      max-height: 520px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      cursor: zoom-in;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      transform: perspective(700px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--img-scale, 1));
-      transform-origin: center;
-      will-change: transform;
-    }
-
-    .reflection-photo-wrap {
-      width: 100%;
-      align-self: flex-start;
-      background: rgba(30, 58, 95, 0.06);
-      border-radius: 14px;
-      padding: 10px;
-    }
-
-    .image-row p {
-      margin: 0;
-    }
-
-    .image-caption {
-      margin-top: 7px;
-      font-size: 0.96rem;
-      color: #475569;
-      line-height: 1.35;
-      font-style: italic;
-      text-align: center;
-    }
-
-    .highlight {
-      background: #e0f2fe;
-      padding: 12px;
-      border-left: 5px solid #0284c7;
-      margin-top: 15px;
-      border-radius: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #1e3a5f;
-      color: white;
-      margin-top: 40px;
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(17, 24, 39, 0.9);
-      z-index: 9999;
-      padding: 24px;
-    }
-
-    .lightbox.open {
-      display: flex;
-    }
-
-    .lightbox img {
-      max-width: min(1100px, 95vw);
-      max-height: 88vh;
-      border-radius: 12px;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      background: transparent;
-      border: 0;
-      color: white;
-      font-size: 2rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .back-to-top {
-      position: fixed;
-      right: 18px;
-      bottom: 20px;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: none;
-      background: #2563eb;
-      color: white;
-      font-size: 1.3rem;
-      cursor: pointer;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.22);
-      opacity: 0;
-      transform: translateY(8px);
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
-      z-index: 1300;
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .back-to-top:hover {
-      background: #1d4ed8;
-    }
-
-    @keyframes navPulse {
-      0% { transform: scale(1); }
-      45% { transform: scale(1.06); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes ctaPulse {
-      0% { transform: scale(1); }
-      45% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes sectionGlow {
-      0% {
-        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.25), 0 5px 15px rgba(0,0,0,0.08);
-      }
-      55% {
-        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0), 0 8px 22px rgba(37, 99, 235, 0.18);
-      }
-      100% {
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      }
-    }
-
-    @media (max-width: 700px) {
-      header {
-        min-height: calc(100vh - var(--progress-nav-height) - 14px);
-      }
-
-      .hero-kicker {
-        margin-top: 38px;
-      }
-
-      .hero-top {
-        flex-wrap: wrap;
-      }
-
-      .hero-author {
-        font-size: 0.88rem;
-      }
-
-      .hero-overview h3 {
-        font-size: 0.95rem;
-      }
-
-      .timeline-page {
-        padding-left: 0;
-      }
-
-      .timeline-page::before {
-        display: none;
-      }
-
-      .day::before,
-      .day::after {
-        display: none;
-      }
-
-      .reveal-on-scroll {
-        transform: translateY(16px);
-      }
-
-      .day-nav-inner {
-        width: 94%;
-      }
-
-      .image-row {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .reflection-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .reflection-photo {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .image-row figure,
-      .day .image-row:nth-of-type(odd) figure {
-        grid-column: 1;
-        grid-row: auto;
-        width: 100%;
-        margin: 0 0 10px 0;
-      }
-
-      .day .image-row:nth-of-type(odd) p {
-        grid-column: 1;
-        grid-row: auto;
-      }
-
-      .image-row img {
-        width: 100%;
-      }
-
-      .image-row img.wargames-img {
-        width: 70% !important;
-        max-width: 70%;
-        max-height: 420px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/interactions.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'><rect width='16' height='10' fill='%230052A5'/><rect x='4' width='2' height='10' fill='%23FECB00'/><rect y='4' width='16' height='2' fill='%23FECB00'/></svg>">
 </head>
-
 <body>
 
-  <header>
+  <div class="hero hero-enhanced">
+    <div class="hero-overlay"></div>
     <div class="hero-inner">
       <div class="hero-top">
         <p class="hero-brand">Project Week Skövde</p>
         <a class="map-link" href="./skovde-visualised.html">Skövde: visual map</a>
       </div>
       <div class="hero-content">
-        <h1 class="hero-title">Project Week<br>Skövde</h1>
-        <p class="hero-author">By Group 1: Andres De Coninck, Jonas D'hont, Rubeen De Roose, Kiandro Baeckelandt, Joachim Carpels, Noah Defruyt</p>
+        <h1>Project Week<br>Skövde</h1>
+        <p class="byline">By Group 1: Andres De Coninck, Jonas D'hont, Rubeen De Roose, Kiandro Baeckelandt, Joachim Carpels, Noah Defruyt</p>
         <div class="hero-overview">
           <h3>Overview</h3>
           <p>We traveled with a group of 25 cybersecurity students to Skövde, Sweden, to compete in an engaging and fun CTF week. We teamed up with Skövde University students to compete against each other and see who was the best at CTF problem solving. Along the way, we made a lot of new friends, created great memories, and overall had an amazing project week.</p>
         </div>
-        <div class="hero-cta-row">
-          <a class="hero-cta" href="#objective">Go to blog</a>
-        </div>
+        <a class="hero-cta" href="#blog">Go to blog</a>
       </div>
     </div>
-  </header>
+  </div>
 
-  <nav class="day-nav" aria-label="Day progress navigation">
-    <div class="day-nav-inner">
-      <a href="#objective" data-target="objective">Objective</a>
-      <a href="#monday" data-target="monday">Monday</a>
-      <a href="#tuesday" data-target="tuesday">Tuesday</a>
-      <a href="#wednesday" data-target="wednesday">Wednesday</a>
-      <a href="#thursday" data-target="thursday">Thursday</a>
-      <a href="#friday" data-target="friday">Friday</a>
-      <a href="#saturday" data-target="saturday">Saturday</a>
-      <a href="#reflection" data-target="reflection">Reflection</a>
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-nav-inner">
+      <a href="./index.html" class="active">Home</a>
+      <a href="./objective.html">Objective</a>
+      <a href="./days/monday.html">Mon</a>
+      <a href="./days/tuesday.html">Tue</a>
+      <a href="./days/wednesday.html">Wed</a>
+      <a href="./days/thursday.html">Thu</a>
+      <a href="./days/friday.html">Fri</a>
+      <a href="./days/saturday.html">Sat</a>
+      <a href="./reflection.html">Reflection</a>
+      <a href="./skovde-visualised.html">Map</a>
+      <a href="./credits.html">Credits</a>
     </div>
   </nav>
 
-  <div class="container">
-    <div class="timeline-page">
-    <div class="day" id="objective" data-day="Objective">
-      <h2>Project Objective</h2>
-      <p>The objective of our project week was less about delivering a final product and more about the experience itself. Instead of a traditional assignment, we collaborated with Skövde University students on <strong>a week-long series of engaging CTF challenges</strong>. <br>
-        <br>
-        Our group was actually separated into different teams during the project week. However, this only helped us further because everyone had different experiences to talk about. <bR>
-        <br>
-        Teamwork was essential: there was a huge variety of challenges, which meant we had to combine our diverse strengths to compete, making it a great way to get to know each other. <strong>In this blog, we’ll walk you through a chronological timeline of our project week, along with a few extras like a visual map of the city.</strong></p>
+  <div class="container" id="blog">
+
+    <div class="intro">
+      <h2>A Week of Challenges and Discovery</h2>
+      <p>A group of students from Howest spent a week in Skövde, Sweden, competing in a Capture The Flag competition alongside students from Skövde University. The challenges ranged from cryptography to real-world scavenger hunts across the campus; the evenings brought board games, pub nights, and a city that had a habit of going quiet by ten on weekdays. This is how the week went, day by day, from the perspective of our group.</p>
     </div>
 
-    <div class="day" id="monday" data-day="Monday">
-      <h2>Day 1 - Start of the CTF week</h2>
-      <p class="written-by">Written by: Joachim Carpels</p>
-
-      <p>
-      On Monday, the project officially kicked off. We started the day with a short introduction where we got to know some of our fellow students. After that, we met our teams and began collaborating on the project until around 4 PM.
-      </p>
-
-      <div class="image-row">
-        <img src="./images/sushi.jpg" alt="Sushi with local students">
-
-        <p>
-        At noon, we went out for sushi together with the local students, which was a great opportunity to connect and spend time together outside of the project work.
-        </p>
-      </div>
-
-      <p>
-      In the evening, we had our first social activity: a board game night. Before and after playing the board games, we spent time talking, having drinks, and getting to know everyone better. It was a fun and relaxed way to end the first day of the project.
-      </p>
-
-      <div class="highlight">
-        <strong>Best moment:</strong> Meeting new people and playing board games together.
-      </div>
+    <div class="collage">
+      <img src="./assets/images/monday/sushi.jpg" alt="Sushi on Monday">
+      <img src="./assets/images/tuesday/dinsdag4.jpg" alt="CTF challenges">
+      <img src="./assets/images/wednesday/chicken-katsu.jpg" alt="Chicken katsu">
+      <img src="./assets/images/thursday/thursday_bar.jpeg" alt="Thursday in the city">
+      <img src="./assets/images/saturday/yummy_croque.jpg" alt="Breakfast on Saturday">
+      <img src="./assets/images/saturday/gothenburg_station.jpg" alt="Gothenburg station">
     </div>
 
-    <div class="day" id="tuesday" data-day="Tuesday">
-      <h2>Day 2 - Continuation of the CTF week and movienight</h2>
-      <p class="written-by">Written by: Andres De Coninck </p>
-      <div class="image-row">
-        <img src="./images/dinsdag4.jpg" alt="Tuesday challenge setup and work">
-        <p>
-          After the amazing first day Monday was, we woke up fresh and early to start the second day of this project week. We went to the classroom pretty early to set up our laptops and be ready when the new challenges dropped.
-        </p>
-      </div>
+    <div class="day-grid">
 
-      <p>
-        Although collaborating was not allowed, we could always rely on other groups to help us with technical issues, problems, or any questions whatsoever. Every group had the perfect blend of Howest students and Skövde University students; everybody got along very well.
-      </p>
+      <a class="day-entry" href="./objective.html">
+        <span class="icon">🎯</span>
+        <h3>Project Objective</h3>
+        <p class="date">Why we were here</p>
+      </a>
 
-      <div class="image-row">
-        <img src="./images/dinsdag1.jpg" alt="CTF scoreboard on Tuesday">
-        <p>
-          After some great hours of competitiveness, this is what the scoreboard looked like, with the amazing 'apt install braincell' in first place. Shortly after, we went out to explore the city for some food.
-        </p>
-      </div>
+      <a class="day-entry" href="./days/monday.html">
+        <span class="icon">🍣</span>
+        <h3>Monday - The Adventure Begins</h3>
+        <p class="date">5 May 2026</p>
+      </a>
 
-      <p>
-        With our bodies and minds full of new energy, we went back to the classroom to keep working on the challenges we weren't able to solve in the morning. It was nice to see that there was a lot of variety in the challenges themselves, from IRL challenges to cryptography. Sadly, there was no reverse engineering, as the Skövde University students did not have any hands-on experience with this.
-      </p>
+      <a class="day-entry" href="./days/tuesday.html">
+        <span class="icon">💻</span>
+        <h3>Tuesday - Challenges Begin</h3>
+        <p class="date">6 May 2026</p>
+      </a>
 
-      <div class="image-row">
-        <img class="wargames-img" src="./images/wargames.jpg" alt='Movie night showing "WarGames"'>
-        <p>
-          To end the day, we joined the movie night at the university and watched WarGames (1983), a classic cyber movie about a teenager who accidentally accesses a military system and nearly starts a nuclear conflict. It was the perfect way to wrap up a long day of CTF challenges, teamwork, and problem solving
-        </p>
-      </div>
+      <a class="day-entry" href="./days/wednesday.html">
+        <span class="icon">🍱</span>
+        <h3>Wednesday - Exploring Skövde</h3>
+        <p class="date">7 May 2026</p>
+      </a>
 
-      <div class="image-row force-left">
-        <img class="inline-day-img" src="./images/dinsdag5.jpg" alt="Exploring the city of Skövde on Tuesday">
-        <p>
-          Since the movie night was optional, some of us also took the chance to explore more of Skövde in the evening and enjoy the good weather.
-        </p>
-      </div>
+      <a class="day-entry" href="./days/thursday.html">
+        <span class="icon">🔍</span>
+        <h3>Thursday - The Final Challenge</h3>
+        <p class="date">8 May 2026</p>
+      </a>
 
-      <div class="highlight">
-        <strong>My favorite moment of the day:</strong> Solving problems together in an international team.
-      </div>
+      <a class="day-entry" href="./days/friday.html">
+        <span class="icon">🎤</span>
+        <h3>Friday - Presentation Day</h3>
+        <p class="date">9 May 2026</p>
+      </a>
+
+      <a class="day-entry" href="./days/saturday.html">
+        <span class="icon">✈️</span>
+        <h3>Saturday - Goodbye Sweden</h3>
+        <p class="date">10 May 2026</p>
+      </a>
+
+      <a class="day-entry" href="./reflection.html">
+        <span class="icon">💭</span>
+        <h3>Reflection</h3>
+        <p class="date">Looking back on the week</p>
+      </a>
+
+      <a class="day-entry" href="./skovde-visualised.html">
+        <span class="icon">🗺</span>
+        <h3>Skövde: Visual Map</h3>
+        <p class="date">Interactive map</p>
+      </a>
+
     </div>
 
-     <div class="day" id="wednesday" data-day="Wednesday">
-      <h2>Day 3 - More fun challenges and exploring the city at night</h2>
-      <p class="written-by">Written by: Kiandro Baeckelandt</p>
- 
-      <p>
-      By Wednesday, the team had truly found its rhythm. We spent the morning back at the university, where a fresh batch of Capture The Flag challenges had just been released.
-      </p>
- 
-      <div class="image-row">
-        <img src="./images/chicken-katsu.jpg" alt="Chicken katsu lunch in Skövde">
- 
-        <p>
-        For lunch, we returned to the sushi restaurant we had visited on Monday, since the food there had been excellent. This time, however, we were curious to try something different from the menu. 
-        Therefore, we ordered chicken katsu: crispy breaded chicken served with rice and a rich, savoury sauce. 
-        It quickly became one of the culinary highlights of the trip.
-        </p>
-      </div>
- 
-      <p>
-      After an afternoon of solving more CTF challenges, we were ready for the evening activity: a pub night. Before heading out, however, we stopped by Systembolaget, the state-owned liquor store, to buy a few drinks for predrinking at our accommodation. 
-      Beer prices in Swedish bars are remarkably high, and although the student café charged less than a regular bar, the cost still added up quickly.
-      </p>
- 
-      <p>
-      Once we felt ready, we walked over to a local student café. The atmosphere there was relaxed and welcoming, and we spent a couple of hours chatting and enjoying the company of the other students. 
-      Unfortunately, the café closed at 11 PM, so we decided to continue our evening in the city centre.
-      </p>
- 
-      <p>
-      Downtown, however, the mood shifted noticeably. 
-      A large group of off-duty soldiers was present, and although we tried to keep to ourselves, the situation gradually became uncomfortable. 
-      Out of caution, we chose to leave early and walk back to our accommodation together as a group.
-      </p>
- 
-      <div class="highlight">
-        <strong>Favorite place:</strong> Rådhuscaféet.
-      </div>
-    </div>
-
-    <div class="day" id="thursday" data-day="Thursday">
-      <h2>Day 4 - Grinding CTF again</h2>
-      <p class="written-by">Written by: Rubeen De Roose</p>
-      <p>ToDo</p>
-
-      <div class="highlight">
-        <strong>Team achievement:</strong> Completing our presentation/project.
-      </div>
-    </div>
-
-    <div class="day" id="friday" data-day="Friday">
-      <h2>Day 5 - Who will win?</h2>
-      <p class="written-by">Written by: Noah Defruyt</p>
-      <p>ToDo</p>
-
-      <div class="highlight">
-        <strong>Proud moment:</strong> Presenting in front of everyone.
-      </div>
-    </div>
-
-    <div class="day" id="saturday" data-day="Saturday">
-      <h2>Day 6 - Goodbye Sweden</h2>
-      <p class="written-by">Written by: Jonas D'hont</p>
-  
-      <div class="image-row">
-        <img src="./images/yummy_croque.jpg" alt="Grilled cheese sandwiches">
-        <p>
-          We woke up at around 10 AM and made some grilled cheese sandwiches for breakfast.
-        </p>
-      </div>
-
-      <div class="image-row">
-        <img src="./images/bubs.jpg" alt="Candy from a Swedish candy store">
-
-        <p>
-          Two people from our group went to a candy store to buy sweets for their mothers. Since it was Mother’s Day the next day, they thought it would make a nice gift.
-        </p>
-      </div>
-  
-      <div class="image-row">
-        <img src="./images/gothenburg_station.jpg" alt="Gothenburg train station">
-
-        <p>
-          Around noon, we grabbed a small snack at the train station before taking the train to Gothenburg.
-        </p>
-      </div>
-  
-      <p>
-        From there, we took an Uber to the airport and waited for our flight home.
-      </p>
-  
-    </div>
-
-    <div class="day" id="reflection" data-day="Reflection">
-      <h2>Reflection</h2>
-      <div class="reflection-row">
-        <p>
-          After everything was said and done, our project week had come to an end. Looking back, every single one of us had an amazing experience throughout the whole week. Whether it was solving challenges, eating good food, drinking an overpriced pint (8 euros, by the way!), or simply chatting with our newly made friends, it was unforgettable.
-          <br><br>
-          What stood out most was how welcome everyone felt from start to finish. Across the whole group, we made many new friends and created memories that will stay with us long after this trip.
-          <br><br>
-          We actually learned a lot of new things from the Swedish students, just as they learned a lot from us. To sum up this project week: we don't just think it was a successful and productive week, we know it was.
-        </p>
-        <div class="reflection-photo-wrap">
-          <img class="reflection-photo" src="./images/groepsfoto.JPEG" alt="Group photo at Högskolan i Skövde">
-        </div>
-      </div>
-    </div>
-
+    <div class="credits-link">
+      <a href="./credits.html">View Credits</a>
     </div>
 
   </div>
@@ -858,216 +134,9 @@
 
   <footer>
     <p>Created during our international project week in Skövde 🇸🇪</p>
+    <p>Howest x Skövde University - May 2026</p>
   </footer>
 
-  <script>
-    function prepareImageRows() {
-      const rowImages = document.querySelectorAll(".image-row img");
-      rowImages.forEach((img) => {
-        if (img.parentElement && img.parentElement.tagName === "FIGURE") {
-          return;
-        }
-
-        const figure = document.createElement("figure");
-        const caption = document.createElement("figcaption");
-        caption.className = "image-caption";
-        caption.textContent = img.alt || "Image";
-
-        img.parentNode.insertBefore(figure, img);
-        figure.appendChild(img);
-        figure.appendChild(caption);
-      });
-    }
-
-    prepareImageRows();
-
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const lightboxClose = document.getElementById("lightboxClose");
-    const zoomableImages = document.querySelectorAll(".day img");
-    const dayNavLinks = document.querySelectorAll(".day-nav a");
-    const daySections = document.querySelectorAll(".day[id]");
-    const backToTop = document.getElementById("backToTop");
-    const heroCta = document.querySelector(".hero-cta");
-    const revealTargets = document.querySelectorAll(".day, .day h2, .day p, .image-row, .highlight, .reflection-row, .written-by");
-
-    function closeLightbox() {
-      lightbox.classList.remove("open");
-      lightbox.setAttribute("aria-hidden", "true");
-      lightboxImage.src = "";
-      lightboxImage.alt = "";
-    }
-
-    revealTargets.forEach((el) => {
-      el.classList.add("reveal-on-scroll");
-    });
-
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
-    );
-
-    revealTargets.forEach((el) => revealObserver.observe(el));
-
-    function flashSection(sectionId) {
-      const target = document.getElementById(sectionId);
-      if (!target) return;
-      target.classList.remove("section-focus");
-      void target.offsetWidth;
-      target.classList.add("section-focus");
-    }
-
-    zoomableImages.forEach((img) => {
-      img.addEventListener("mousemove", (event) => {
-        const rect = img.getBoundingClientRect();
-        const relX = (event.clientX - rect.left) / rect.width;
-        const relY = (event.clientY - rect.top) / rect.height;
-        const rotateY = (relX - 0.5) * 8;
-        const rotateX = (0.5 - relY) * 8;
-
-        img.style.setProperty("--tilt-x", `${rotateX}deg`);
-        img.style.setProperty("--tilt-y", `${rotateY}deg`);
-        img.style.setProperty("--img-scale", "1.06");
-        img.style.boxShadow = "0 10px 22px rgba(0,0,0,0.2)";
-      });
-
-      img.addEventListener("mouseleave", () => {
-        img.style.setProperty("--tilt-x", "0deg");
-        img.style.setProperty("--tilt-y", "0deg");
-        img.style.setProperty("--img-scale", "1");
-        img.style.boxShadow = "0 4px 12px rgba(0,0,0,0.12)";
-      });
-
-      img.addEventListener("click", () => {
-        lightboxImage.src = img.src;
-        lightboxImage.alt = img.alt || "Expanded image";
-        lightbox.classList.add("open");
-        lightbox.setAttribute("aria-hidden", "false");
-      });
-    });
-
-    lightboxClose.addEventListener("click", closeLightbox);
-
-    lightbox.addEventListener("click", (event) => {
-      if (event.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && lightbox.classList.contains("open")) {
-        closeLightbox();
-      }
-    });
-
-    function setActiveNav(targetId) {
-      dayNavLinks.forEach((link) => {
-        link.classList.toggle("active", link.dataset.target === targetId);
-      });
-    }
-
-    function updateActiveSection() {
-      const nav = document.querySelector(".day-nav");
-      const markerY = (nav ? nav.getBoundingClientRect().bottom : 0) + 20;
-      let currentId = null;
-      const lastSection = daySections[daySections.length - 1];
-
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 6) {
-        setActiveNav(lastSection.id);
-        return;
-      }
-
-      for (const section of daySections) {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= markerY && rect.bottom > markerY) {
-          currentId = section.id;
-          break;
-        }
-      }
-
-      if (!currentId) {
-        let closestSection = daySections[0];
-        let closestDistance = Infinity;
-
-        daySections.forEach((section) => {
-          const distance = Math.abs(section.getBoundingClientRect().top - markerY);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestSection = section;
-          }
-        });
-
-        currentId = closestSection.id;
-      }
-
-      setActiveNav(currentId);
-    }
-
-    dayNavLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        const targetId = link.dataset.target;
-        const targetSection = document.getElementById(targetId);
-
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-
-        link.classList.remove("clicked");
-        void link.offsetWidth;
-        link.classList.add("clicked");
-        setActiveNav(targetId);
-        requestAnimationFrame(() => {
-          updateActiveSection();
-          flashSection(targetId);
-        });
-      });
-    });
-
-    if (heroCta) {
-      heroCta.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        const ctaTargetId = heroCta.getAttribute("href")?.replace("#", "");
-        const ctaTarget = ctaTargetId ? document.getElementById(ctaTargetId) : null;
-
-        if (ctaTarget) {
-          ctaTarget.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-
-        heroCta.classList.remove("clicked");
-        void heroCta.offsetWidth;
-        heroCta.classList.add("clicked");
-
-        if (ctaTargetId) {
-          requestAnimationFrame(() => flashSection(ctaTargetId));
-        }
-      });
-    }
-
-    updateActiveSection();
-
-    window.addEventListener("scroll", () => {
-      updateActiveSection();
-      if (window.scrollY > 500) {
-        backToTop.classList.add("visible");
-      } else {
-        backToTop.classList.remove("visible");
-      }
-    });
-
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
-
+  <script src="js/interactions.js"></script>
 </body>
 </html>
