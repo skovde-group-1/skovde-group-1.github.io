@@ -3,6 +3,7 @@
   const lightboxImage = document.getElementById("lightboxImage");
   const lightboxClose = document.getElementById("lightboxClose");
   const backToTop = document.getElementById("backToTop");
+  const siteNavs = document.querySelectorAll(".site-nav");
   const zoomableImages = document.querySelectorAll(".zoomable, .content img, .collage img, .reflection-photo");
   const revealTargets = document.querySelectorAll(
     ".content, .content p, .image-row, .highlight, .day-header, .author-block, .intro, .day-entry, .collage, .reflection-row, .credit-entry"
@@ -76,6 +77,38 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
+
+  siteNavs.forEach((nav) => {
+    if (nav.querySelector(".site-nav-toggle")) return;
+    const toggle = document.createElement("button");
+    toggle.className = "site-nav-toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Toggle navigation menu");
+    toggle.textContent = "☰";
+    nav.insertBefore(toggle, nav.querySelector(".site-nav-inner"));
+  });
+
+  const siteNavToggles = document.querySelectorAll(".site-nav-toggle");
+
+  siteNavToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const nav = toggle.closest(".site-nav");
+      if (!nav) return;
+      const isOpen = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
+
+  siteNavs.forEach((nav) => {
+    nav.querySelectorAll(".site-nav-inner a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        const toggle = nav.querySelector(".site-nav-toggle");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  });
 
   const heroCta = document.querySelector(".hero-cta");
   if (heroCta) {
