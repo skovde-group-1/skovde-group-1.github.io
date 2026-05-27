@@ -581,14 +581,32 @@
     }
 
     function updateActiveSection() {
-      const navOffset = 90;
-      let currentId = "objective";
+      const nav = document.querySelector(".day-nav");
+      const markerY = (nav ? nav.getBoundingClientRect().bottom : 0) + 20;
+      let currentId = null;
 
-      daySections.forEach((section) => {
-        if (window.scrollY + navOffset >= section.offsetTop) {
+      for (const section of daySections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= markerY && rect.bottom > markerY) {
           currentId = section.id;
+          break;
         }
-      });
+      }
+
+      if (!currentId) {
+        let closestSection = daySections[0];
+        let closestDistance = Infinity;
+
+        daySections.forEach((section) => {
+          const distance = Math.abs(section.getBoundingClientRect().top - markerY);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestSection = section;
+          }
+        });
+
+        currentId = closestSection.id;
+      }
 
       setActiveNav(currentId);
     }
@@ -596,6 +614,7 @@
     dayNavLinks.forEach((link) => {
       link.addEventListener("click", () => {
         setActiveNav(link.dataset.target);
+        requestAnimationFrame(updateActiveSection);
       });
     });
 
