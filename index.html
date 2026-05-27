@@ -50,7 +50,7 @@
 
     .container {
       width: 90%;
-      max-width: 950px;
+      max-width: 1080px;
       margin: auto;
       padding: 35px 0;
     }
@@ -66,7 +66,7 @@
 
     .day-nav-inner {
       width: 90%;
-      max-width: 950px;
+      max-width: 1080px;
       margin: 0 auto;
       display: flex;
       justify-content: center;
@@ -162,6 +162,10 @@
       margin: 25px 0;
     }
 
+    .day .image-row:nth-of-type(odd) {
+      flex-direction: row-reverse;
+    }
+
     .image-row img {
       width: 320px;
       max-width: 100%;
@@ -184,6 +188,30 @@
       width: 320px;
       max-width: 100%;
       margin-top: 12px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      cursor: zoom-in;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transform: perspective(700px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--img-scale, 1));
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .reflection-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-top: 10px;
+    }
+
+    .reflection-row p {
+      flex: 1;
+      margin: 0;
+    }
+
+    .reflection-photo {
+      width: 560px;
+      max-width: 58%;
       border-radius: 14px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       cursor: zoom-in;
@@ -306,6 +334,20 @@
         align-items: flex-start;
       }
 
+      .reflection-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .reflection-photo {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .day .image-row:nth-of-type(odd) {
+        flex-direction: column;
+      }
+
       .image-row img {
         width: 100%;
       }
@@ -336,6 +378,7 @@
       <a href="#thursday" data-target="thursday">Thursday</a>
       <a href="#friday" data-target="friday">Friday</a>
       <a href="#saturday" data-target="saturday">Saturday</a>
+      <a href="#reflection" data-target="reflection">Reflection</a>
     </div>
   </nav>
 
@@ -352,7 +395,7 @@
 
     <div class="day" id="monday" data-day="Monday">
       <h2>Day 1 - Start of the CTF week</h2>
-      <p class="written-by">Written by: </p>
+      <p class="written-by">Written by: Joachim Carpels</p>
 
       <p>
       On Monday, the project officially kicked off. We started the day with a short introduction where we got to know some of our fellow students. After that, we met our teams and began collaborating on the project until around 4 PM.
@@ -419,7 +462,7 @@
 
      <div class="day" id="wednesday" data-day="Wednesday">
       <h2>Day 3 - More fun challenges and exploring the city at night</h2>
-      <p class="written-by">Written by: </p>
+      <p class="written-by">Written by: Kiandro Baeckelandt</p>
  
       <p>
       By Wednesday, the team had truly found its rhythm. We spent the morning back at the university, where a fresh batch of Capture The Flag challenges had just been released.
@@ -458,7 +501,7 @@
 
     <div class="day" id="thursday" data-day="Thursday">
       <h2>Day 4 - Grinding CTF again</h2>
-      <p class="written-by">Written by: </p>
+      <p class="written-by">Written by: Rubeen De Roose</p>
       <p>ToDo</p>
 
       <div class="highlight">
@@ -468,7 +511,7 @@
 
     <div class="day" id="friday" data-day="Friday">
       <h2>Day 5 - Who will win?</h2>
-      <p class="written-by">Written by: </p>
+      <p class="written-by">Written by: Noah Defruyt</p>
       <p>ToDo</p>
 
       <div class="highlight">
@@ -478,7 +521,7 @@
 
     <div class="day" id="saturday" data-day="Saturday">
       <h2>Day 6 - Goodbye Sweden</h2>
-      <p class="written-by">Written by: </p>
+      <p class="written-by">Written by: Jonas D'hont</p>
   
       <div class="image-row">
         <img src="./images/yummy_croque.jpg" alt="Grilled cheese sandwiches">
@@ -507,8 +550,13 @@
         From there, we took an Uber to the airport and waited for our flight home.
       </p>
   
-      <div class="highlight">
-        <strong>Final reflection:</strong> This week helped us grow both personally and professionally. We met many wonderful people and learned several new skills along the way.
+    </div>
+
+    <div class="day" id="reflection" data-day="Reflection">
+      <h2>Reflection</h2>
+      <div class="reflection-row">
+        <p>(to be filled in)</p>
+        <img class="reflection-photo" src="./images/groepsfoto.JPEG" alt="Group photo at Högskolan i Skövde">
       </div>
     </div>
 
@@ -596,6 +644,12 @@
       const nav = document.querySelector(".day-nav");
       const markerY = (nav ? nav.getBoundingClientRect().bottom : 0) + 20;
       let currentId = null;
+      const lastSection = daySections[daySections.length - 1];
+
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 6) {
+        setActiveNav(lastSection.id);
+        return;
+      }
 
       for (const section of daySections) {
         const rect = section.getBoundingClientRect();
