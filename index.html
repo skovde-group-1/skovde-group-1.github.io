@@ -55,6 +55,46 @@
       padding: 35px 0;
     }
 
+    .day-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+      backdrop-filter: blur(6px);
+      background: rgba(244, 247, 251, 0.92);
+      border-bottom: 1px solid #dbe5f0;
+    }
+
+    .day-nav-inner {
+      width: 90%;
+      max-width: 950px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: thin;
+    }
+
+    .day-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 7px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+      border: 1px solid #dbe5f0;
+      background: white;
+      transition: all 0.2s ease;
+    }
+
+    .day-nav a.active {
+      color: white;
+      background: #2563eb;
+      border-color: #2563eb;
+    }
+
     .timeline-page {
       position: relative;
       padding-left: 150px;
@@ -77,6 +117,7 @@
       padding: 25px;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      scroll-margin-top: 70px;
     }
 
     .day::before {
@@ -202,6 +243,36 @@
       padding: 4px;
     }
 
+    .back-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 20px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: none;
+      background: #2563eb;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.22);
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      z-index: 1300;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: #1d4ed8;
+    }
+
     @media (max-width: 700px) {
       header h1 {
         font-size: 2.2rem;
@@ -218,6 +289,10 @@
       .day::before,
       .day::after {
         display: none;
+      }
+
+      .day-nav-inner {
+        width: 94%;
       }
 
       .image-row {
@@ -245,6 +320,18 @@
     <p>By Group 1: Andres De Coninck, Jonas D'hont, Rubeen De Roose, Kiandro Baeckelandt, Joachim Carpels, Noah Defruyt</p>
     <a class="map-link" href="./skovde-visualised.html">Skôvde: visualised</a>
   </header>
+
+  <nav class="day-nav" aria-label="Day progress navigation">
+    <div class="day-nav-inner">
+      <a href="#objective" data-target="objective">Objective</a>
+      <a href="#monday" data-target="monday">Mon</a>
+      <a href="#tuesday" data-target="tuesday">Tue</a>
+      <a href="#wednesday" data-target="wednesday">Wed</a>
+      <a href="#thursday" data-target="thursday">Thu</a>
+      <a href="#friday" data-target="friday">Fri</a>
+      <a href="#saturday" data-target="saturday">Sat</a>
+    </div>
+  </nav>
 
   <div class="container">
     <div class="timeline-page">
@@ -422,6 +509,8 @@
     <img id="lightboxImage" src="" alt="">
   </div>
 
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
   <footer>
     <p>Created during our international project week in Skövde 🇸🇪</p>
   </footer>
@@ -431,6 +520,9 @@
     const lightboxImage = document.getElementById("lightboxImage");
     const lightboxClose = document.getElementById("lightboxClose");
     const zoomableImages = document.querySelectorAll(".day img");
+    const dayNavLinks = document.querySelectorAll(".day-nav a");
+    const daySections = document.querySelectorAll(".day[id]");
+    const backToTop = document.getElementById("backToTop");
 
     function closeLightbox() {
       lightbox.classList.remove("open");
@@ -480,6 +572,46 @@
       if (event.key === "Escape" && lightbox.classList.contains("open")) {
         closeLightbox();
       }
+    });
+
+    function setActiveNav(targetId) {
+      dayNavLinks.forEach((link) => {
+        link.classList.toggle("active", link.dataset.target === targetId);
+      });
+    }
+
+    function updateActiveSection() {
+      const navOffset = 90;
+      let currentId = "objective";
+
+      daySections.forEach((section) => {
+        if (window.scrollY + navOffset >= section.offsetTop) {
+          currentId = section.id;
+        }
+      });
+
+      setActiveNav(currentId);
+    }
+
+    dayNavLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        setActiveNav(link.dataset.target);
+      });
+    });
+
+    updateActiveSection();
+
+    window.addEventListener("scroll", () => {
+      updateActiveSection();
+      if (window.scrollY > 500) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
 
