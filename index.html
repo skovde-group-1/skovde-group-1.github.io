@@ -251,6 +251,10 @@
       color: #334155;
     }
 
+    .day p {
+      font-size: 1.1rem;
+    }
+
     .image-row {
       display: grid;
       grid-template-columns: minmax(280px, 44%) minmax(0, 1fr);
@@ -278,6 +282,16 @@
 
     .day .image-row:nth-of-type(odd) p {
       grid-column: 1;
+      grid-row: 1;
+    }
+
+    .day .image-row.force-left figure {
+      grid-column: 1 !important;
+      grid-row: 1;
+    }
+
+    .day .image-row.force-left p {
+      grid-column: 2 !important;
       grid-row: 1;
     }
 
@@ -344,6 +358,14 @@
       transform: perspective(700px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--img-scale, 1));
       transform-origin: center;
       will-change: transform;
+    }
+
+    .reflection-photo-wrap {
+      width: 100%;
+      align-self: flex-start;
+      background: rgba(30, 58, 95, 0.06);
+      border-radius: 14px;
+      padding: 10px;
     }
 
     .image-row p {
@@ -641,10 +663,12 @@
         </p>
       </div>
 
-      <p>
-        Since the movie night was optional, some of us also took the chance to explore more of Skövde in the evening and enjoy the good weather.<br>
+      <div class="image-row force-left">
         <img class="inline-day-img" src="./images/dinsdag5.jpg" alt="Exploring the city of Skövde on Tuesday">
-      </p>
+        <p>
+          Since the movie night was optional, some of us also took the chance to explore more of Skövde in the evening and enjoy the good weather.
+        </p>
+      </div>
 
       <div class="highlight">
         <strong>My favorite moment of the day:</strong> Solving problems together in an international team.
@@ -753,7 +777,9 @@
           <br><br>
           We actually learned a lot of new things from the Swedish students, just as they learned a lot from us. To sum up this project week: we don't just think it was a successful and productive week, we know it was.
         </p>
-        <img class="reflection-photo" src="./images/groepsfoto.JPEG" alt="Group photo at Högskolan i Skövde">
+        <div class="reflection-photo-wrap">
+          <img class="reflection-photo" src="./images/groepsfoto.JPEG" alt="Group photo at Högskolan i Skövde">
+        </div>
       </div>
     </div>
 
