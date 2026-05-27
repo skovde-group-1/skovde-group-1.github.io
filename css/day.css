@@ -1,0 +1,149 @@
+/* DAY HEADER */
+.day-header {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.day-header h2 {
+  font-size: 1.8rem;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+
+/* AUTHOR */
+.author-block {
+  font-size: 0.88rem;
+  color: #888;
+  margin: 8px 0 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #333;
+}
+
+.author-block span {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+/* CONTENT */
+.content p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+/* ALL IMAGES INSIDE CONTENT */
+.content img,
+.image-row img,
+.inline-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/* IMAGE ROW */
+.image-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 30px auto;
+  max-width: 580px;
+}
+
+.image-row img {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  object-fit: contain;
+}
+
+.image-row .caption-block {
+  width: 100%;
+  max-width: 580px;
+  margin-top: 10px;
+}
+
+.image-row .caption-block p {
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.image-row .caption-block em {
+  font-size: 0.82rem;
+  color: #666;
+  display: block;
+  margin-top: 4px;
+  border-left: 3px solid var(--gold);
+  padding-left: 8px;
+  text-align: left;
+}
+
+/* STANDALONE IMAGES IN CONTENT */
+.content > img {
+  max-width: 580px;
+  height: auto;
+  margin: 16px auto 4px;
+}
+
+/* CAPTION */
+p.caption {
+  font-size: 0.82rem;
+  color: #666;
+  font-style: italic;
+  margin: 4px auto 20px;
+  max-width: 580px;
+  border-left: 3px solid var(--gold);
+  padding-left: 8px;
+}
+
+/* INLINE IMAGE */
+.inline-img {
+  max-width: 580px;
+  height: auto;
+  margin: 16px auto;
+}
+
+/* WARGAMES */
+.img-small {
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/* HIGHLIGHT BOX */
+.highlight {
+  background: #1a1a2e;
+  color: #e8e8e8;
+  padding: 14px 18px;
+  border-left: 5px solid var(--gold);
+  border-radius: 6px;
+  margin-top: 30px;
+  font-size: 0.95rem;
+}
+
+.highlight strong {
+  color: var(--gold-light);
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .day-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .image-row,
+  .image-row img,
+  .content > img,
+  .inline-img {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skövde: Visualised</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  >
+  <style>
+    body {
+      background: #111;
+      color: #e8e8e8;
+      margin: 0;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 30px auto 50px;
+    }
+
+    #map {
+      width: 100%;
+      height: 72vh;
+      min-height: 460px;
+      border-radius: 10px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+    }
+
+    .legend {
+      margin-top: 14px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 12px 18px;
+      border-left: 4px solid var(--gold);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Override Leaflet popup to match theme */
+    .leaflet-popup-content-wrapper {
+      background: #1a1a1a;
+      color: #e8e8e8;
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    .leaflet-popup-tip {
+      background: #1a1a1a;
+    }
+
+    .leaflet-popup-content strong {
+      color: var(--gold-light);
+    }
+
+    .leaflet-popup-close-button {
+      color: #aaa !important;
+    }
+
+    .leaflet-popup-close-button:hover {
+      color: var(--gold) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="header-flag">🇸🇪</span>
+    <h1>Skövde: Visualised</h1>
+    <p>An interactive map of where we spent our project week</p>
+  </header>
+
+  <nav>
+    <a href="./index.html">← Back to Overview</a>
+  </nav>
+
+  <div class="container">
+
+    <div id="map" aria-label="Interactive map of Skövde"></div>
+
+    <div class="legend">
+      Click any marker to see what we did there.
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Created during our international project week in Skövde 🇸🇪</p>
+    <p style="margin-top:8px; opacity:0.7; font-size:0.85rem;">Howest × Skövde University — May 2026</p>
+  </footer>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script>
+    const map = L.map("map").setView([58.3913, 13.8451], 14);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const places = [
+      {
+        name: "University of Skövde",
+        coords: [58.39405, 13.85462],
+        info: "Monday to Friday — our main base for challenges, teamwork, and presentations."
+      },
+      {
+        name: "Sushi Lunch Spot",
+        coords: [58.3899918, 13.8476738],
+        info: "We had lunch here many times with local students and tried different dishes."
+      },
+      {
+        name: "Systembolaget",
+        coords: [58.3906327, 13.8444125],
+        info: "The state-owned liquor store in Skövde."
+      },
+      {
+        name: "Rådhuscaféet",
+        coords: [58.3904103, 13.8462342],
+        info: "Student café hangout before continuing the night in the city."
+      },
+      {
+        name: "Movie Night Location",
+        coords: [58.39405, 13.85482],
+        info: 'Tuesday activity — we watched "WarGames" at the university campus.'
+      },
+      {
+        name: "City Centre",
+        coords: [58.3896, 13.8454],
+        info: "The main city square of Skövde, where we spent our time outside of the classroom."
+      },
+      {
+        name: "Board Game Night",
+        coords: [58.3881300, 13.8438110],
+        info: "Monday evening board game night."
+      },
+      {
+        name: "Skövde Centralstation",
+        coords: [58.3895990, 13.8523232],
+        info: "Main train station where we arrived and left from."
+      }
+    ];
+
+    places.forEach((place) => {
+      L.marker(place.coords)
+        .addTo(map)
+        .bindPopup(`<strong>${place.name}</strong><br>${place.info}`);
+    });
+  </script>
+
+</body>
+</html>
