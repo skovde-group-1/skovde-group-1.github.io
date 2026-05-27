@@ -252,19 +252,42 @@
     }
 
     .image-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(280px, 44%) minmax(0, 1fr);
       align-items: center;
-      gap: 25px;
-      margin: 25px 0;
+      gap: 26px;
+      margin: 20px 0;
     }
 
-    .day .image-row:nth-of-type(odd) {
-      flex-direction: row-reverse;
+    .image-row figure {
+      width: 100%;
+      margin: 0;
+      background: rgba(30, 58, 95, 0.06);
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .day .image-row:nth-of-type(odd) figure {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .day .image-row:nth-of-type(odd) p {
+      grid-column: 1;
+      grid-row: 1;
     }
 
     .image-row img {
-      width: 320px;
+      width: 100%;
       max-width: 100%;
+      display: block;
+      max-height: 330px;
+      object-fit: cover;
+      object-position: center;
       border-radius: 14px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       cursor: zoom-in;
@@ -275,9 +298,11 @@
     }
 
     .image-row img.wargames-img {
-      width: 208px !important;
-      max-width: 208px;
+      width: auto !important;
+      max-width: 100%;
+      max-height: 460px;
       height: auto;
+      margin: 0 auto;
     }
 
     .inline-day-img {
@@ -295,8 +320,9 @@
 
     .reflection-row {
       display: flex;
-      align-items: center;
-      gap: 28px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
       margin-top: 10px;
     }
 
@@ -306,8 +332,11 @@
     }
 
     .reflection-photo {
-      width: 560px;
-      max-width: 58%;
+      width: 100%;
+      max-width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center;
       border-radius: 14px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       cursor: zoom-in;
@@ -318,8 +347,16 @@
     }
 
     .image-row p {
-      flex: 1;
       margin: 0;
+    }
+
+    .image-caption {
+      margin-top: 7px;
+      font-size: 0.82rem;
+      color: #475569;
+      line-height: 1.35;
+      font-style: italic;
+      text-align: center;
     }
 
     .highlight {
@@ -466,8 +503,9 @@
       }
 
       .image-row {
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       .reflection-row {
@@ -480,8 +518,17 @@
         max-width: 100%;
       }
 
-      .day .image-row:nth-of-type(odd) {
-        flex-direction: column;
+      .image-row figure,
+      .day .image-row:nth-of-type(odd) figure {
+        grid-column: 1;
+        grid-row: auto;
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+
+      .day .image-row:nth-of-type(odd) p {
+        grid-column: 1;
+        grid-row: auto;
       }
 
       .image-row img {
@@ -489,8 +536,9 @@
       }
 
       .image-row img.wargames-img {
-        width: 50% !important;
-        max-width: 50%;
+        width: 70% !important;
+        max-width: 70%;
+        max-height: 420px;
       }
     }
   </style>
@@ -589,12 +637,12 @@
       <div class="image-row">
         <img class="wargames-img" src="./images/wargames.jpg" alt='Movie night showing "WarGames"'>
         <p>
-          Tuesday's activity was a movie night at the university, where they showed the movie "WarGames", a great movie about a young hacker who accidentally accesses a US military system and starts playing what he believes is a simulation of nuclear war. He must then race against time to stop the machine before it mistakes the game for reality and triggers an actual World War.
+          To end the day, we joined the movie night at the university and watched WarGames (1983), a classic cyber movie about a teenager who accidentally accesses a military system and nearly starts a nuclear conflict. It was the perfect way to wrap up a long day of CTF challenges, teamwork, and problem solving
         </p>
       </div>
 
       <p>
-        As attending the movie night was not mandatory, some people decided to go out and explore the city of Skövde some more, as it was a very beautiful day.<br>
+        Since the movie night was optional, some of us also took the chance to explore more of Skövde in the evening and enjoy the good weather.<br>
         <img class="inline-day-img" src="./images/dinsdag5.jpg" alt="Exploring the city of Skövde on Tuesday">
       </p>
 
@@ -698,7 +746,13 @@
     <div class="day" id="reflection" data-day="Reflection">
       <h2>Reflection</h2>
       <div class="reflection-row">
-        <p>(to be filled in)</p>
+        <p>
+          After everything was said and done, our project week had come to an end. Looking back, every single one of us had an amazing experience throughout the whole week. Whether it was solving challenges, eating good food, drinking an overpriced pint (8 euros, by the way!), or simply chatting with our newly made friends, it was unforgettable.
+          <br><br>
+          What stood out most was how welcome everyone felt from start to finish. Across the whole group, we made many new friends and created memories that will stay with us long after this trip.
+          <br><br>
+          We actually learned a lot of new things from the Swedish students, just as they learned a lot from us. To sum up this project week: we don't just think it was a successful and productive week, we know it was.
+        </p>
         <img class="reflection-photo" src="./images/groepsfoto.JPEG" alt="Group photo at Högskolan i Skövde">
       </div>
     </div>
@@ -719,6 +773,26 @@
   </footer>
 
   <script>
+    function prepareImageRows() {
+      const rowImages = document.querySelectorAll(".image-row img");
+      rowImages.forEach((img) => {
+        if (img.parentElement && img.parentElement.tagName === "FIGURE") {
+          return;
+        }
+
+        const figure = document.createElement("figure");
+        const caption = document.createElement("figcaption");
+        caption.className = "image-caption";
+        caption.textContent = img.alt || "Image";
+
+        img.parentNode.insertBefore(figure, img);
+        figure.appendChild(img);
+        figure.appendChild(caption);
+      });
+    }
+
+    prepareImageRows();
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
     const lightboxClose = document.getElementById("lightboxClose");
